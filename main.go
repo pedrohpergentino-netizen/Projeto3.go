@@ -26,7 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	_, err = db.Exec("INSERT OR IGNORE INTO usuarios (idade, nome) VALUES (39, 'Hagno'), (19, 'Gabriel')")
+	_, err = db.Exec("INSERT OR IGNORE INTO usuarios (idade, nome) VALUES (39, 'Hagno'), (20, 'Gabriel'), (19, 'Pedro')")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -54,6 +54,6 @@ func main() {
 		json.NewEncoder(w).Encode(pessoas)
 	})
 
-	log.Println("Servidor iniciando em :6820, Use http://localhost:6820/usuarios")
+	log.Println("Servidor iniciando, use http://localhost:6820/usuarios")
 	log.Fatal(http.ListenAndServe(":6820", nil))
 }
