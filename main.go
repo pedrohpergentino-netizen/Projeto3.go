@@ -101,26 +101,4 @@ func criarUsuario(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(u)
-}			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		defer rows.Close()
-
-		var pessoas []Usuarios
-		for rows.Next() {
-			var u Usuarios
-			err := rows.Scan(&u.Idade, &u.Nome)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
-			}
-			pessoas = append(pessoas, u)
-		}
-
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(pessoas)
-	})
-
-	log.Println("Servidor iniciando, use http://localhost:6820/usuarios")
-	log.Fatal(http.ListenAndServe(":6820", nil))
 }
